@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,11 +6,15 @@
         <title>JSP Page</title>
     </head>
     <body>
+    <% if(request.getAttribute("message")!=null){
+    %>
+    <h3><%= request.getAttribute("message") %></h3>
+    <%}%>
         <form action="LoginServlet">
             Login: <br />
             <input type="text" name="login" /><br />
             Password: <br />
-            <input type="text" name="password" /><br />
+            <input type="password" name="password" /><br />
             <br />
             <input type="submit" value="Login" name="Login"/>
         </form>

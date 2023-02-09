@@ -1,16 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: karol
-  Date: 08.02.2023
-  Time: 17:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
 </head>
 <body>
-
+<% if(request.getAttribute("message")!=null){
+%>
+<h3><%= request.getAttribute("message") %></h3>
+<%}%>
+<form action="RegisterServlet">
+    Login: <br />
+    <input type="text" name="login" /><br />
+    Email: <br />
+    <input type="text" name="email" /><br />
+    Password: <br />
+    <input type="password" name="password" /><br />
+    Confirm Password: <br />
+    <input type="password" name="password_confirm" /><br />
+    <br />
+    <input type="submit" value="Register" name="Register"/>
+</form>
 </body>
 </html>

@@ -14,34 +14,66 @@ public class User {
         password="";
     }
 
-    public boolean login() {
-        String login_database = "";
-        String password_database = "";
-        String result = "";
+    public boolean login()
+    {
+        boolean result = true;
         try {
             Connection connection = DBConnector.connect();
             Statement statement = connection.createStatement();
-            //String sql = "Select * from users";
             String sql = "SELECT Count(*) FROM users WHERE login = '" + login + "' AND password = '" + password + "';";
             ResultSet resultSet  = statement.executeQuery(sql);
             resultSet.next();
             connection.setAutoCommit(false);
             if(resultSet.getInt(1)==0)
             {
-                result = "false";
+                resultSet.close();
+                connection.close();
+                result = false;
             }
             else {
-                result = "true";
+                resultSet.close();
+                connection.close();
+                result = true;
             }
+            statement.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
-        if(result.equals("true")) {
-            return true;
-        }else
-            return false;
+        return result;
     }
+    public boolean register() {
+        boolean result = true;
+        try {
+            Connection connection = DBConnector.connect();
+            Statement statement = connection.createStatement();
+            String sql = "SELECT Count(*) FROM users WHERE login = '" + login +"';";
+            ResultSet resultSet  = statement.executeQuery(sql);
+            resultSet.next();
+            connection.setAutoCommit(true);
+            if(resultSet.getInt(1)==0)
+            {
+                Statement statementInsert= connection.createStatement();
+                String sqlInsert = "INSERT INTO users (login, email, password) VALUES ('"+ login +"', '"+email+"', '"+password+"');";
+                statementInsert.executeUpdate(sqlInsert);
+                resultSet.close();
+                statementInsert.close();
+                connection.close();
+                result = true;
+            }
+            else {
+                resultSet.close();
+                connection.close();
+                result = false;
+            }
+            statement.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+            System.exit(0);
+        }
+        return result;
+    }
+
     public String getLogin() {
         return login;
     }

@@ -1,19 +1,17 @@
 package com.example.demo;
 
-import java.io.*;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-    String result = "";
+    String message = "";
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -21,14 +19,14 @@ public class LoginServlet extends HttpServlet {
         user.setLogin(login);
         user.setPassword(password);
         if(user.login()) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/users.jsp");
-            result = "Logged in" + login;
-            request.setAttribute("result", result);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/passwordManager.jsp");
+            message = "Welcome " + login;
+            request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/wronglogin.jsp");
-            result = "Wrong login or password";
-            request.setAttribute("result", result);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+            message = "Wrong login or password";
+            request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }
     }
