@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
         user.setPassword(password);
         if(user.login()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/users.jsp");
-            result = "Logged in";
+            result = "Logged in" + login;
             request.setAttribute("result", result);
             dispatcher.forward(request,response);
         }else {
@@ -31,8 +31,6 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("result", result);
             dispatcher.forward(request,response);
         }
-        //request.setAttribute("login", user.getLogin());
-        //request.setAttribute("password", user.getPassword());
     }
 
     @Override

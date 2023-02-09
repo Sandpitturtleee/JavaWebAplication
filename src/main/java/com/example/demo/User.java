@@ -17,24 +17,27 @@ public class User {
     public boolean login() {
         String login_database = "";
         String password_database = "";
+        String result = "";
         try {
             Connection connection = DBConnector.connect();
             Statement statement = connection.createStatement();
-            String sql = "Select * from users";
+            //String sql = "Select * from users";
+            String sql = "SELECT Count(*) FROM users WHERE login = '" + login + "' AND password = '" + password + "';";
             ResultSet resultSet  = statement.executeQuery(sql);
+            resultSet.next();
             connection.setAutoCommit(false);
-            while ( resultSet.next() ) {
-                login_database = resultSet.getString("login");
-                password_database = resultSet.getString("password");
+            if(resultSet.getInt(1)==0)
+            {
+                result = "false";
             }
-            resultSet.close();
-            statement.close();
-            connection.close();
+            else {
+                result = "true";
+            }
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
-        if(login.equals(login_database)&& password.equals(password_database)) {
+        if(result.equals("true")) {
             return true;
         }else
             return false;
