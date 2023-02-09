@@ -11,11 +11,30 @@ public class RegisterServlet extends HttpServlet {
     String message = "";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        registerNewUser(request,response);
+        validateRegisterForm(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+
+    protected void validateRegisterForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        String login = request.getParameter("login");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String password_confirm = request.getParameter("password_confirm");
+
+        if (!password.equals(password_confirm)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
+            message = "Please confirm password";
+            request.setAttribute("message", message);
+            dispatcher.forward(request,response);
+        } else {
+            registerNewUser(request,response);
+        }
 
     }
     protected void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -29,12 +48,12 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         if(user.register()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            message = "User registered";
+            message = "User registered" + login + email + password;
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
-            message = "Error";
+            message = "User already exists";
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }
