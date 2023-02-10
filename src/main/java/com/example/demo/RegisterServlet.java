@@ -27,15 +27,20 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String password_confirm = request.getParameter("password_confirm");
 
-        if (!password.equals(password_confirm)) {
+        if (isEmpty(login)||isEmpty(email)||isEmpty(password)||isEmpty(password_confirm)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
-            message = "Please confirm password";
+            message = "Please fill in all text fields";
+            request.setAttribute("message", message);
+            dispatcher.forward(request, response);
+        }
+        else if (!password.equals(password_confirm)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
+            message = "Passwords need to be the same";
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
         } else {
             registerNewUser(request,response);
         }
-
     }
     protected void registerNewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -57,5 +62,8 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }
+    }
+    public static boolean isEmpty(String string) {
+        return (string == null || string.isEmpty());
     }
 }

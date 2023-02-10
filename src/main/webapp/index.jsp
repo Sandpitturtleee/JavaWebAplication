@@ -6,6 +6,9 @@
     <title>JSP Page</title>
 </head>
 <body>
+    <%
+    session.setAttribute("accessLvl", "Guest");
+    %>
     <form method="post" action="login.jsp">
         <br />
         <input type="submit" value="Login">

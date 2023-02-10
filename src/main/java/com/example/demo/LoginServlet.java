@@ -19,10 +19,20 @@ public class LoginServlet extends HttpServlet {
         user.setLogin(login);
         user.setPassword(password);
         if(user.login()) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/passwordManager.jsp");
-            message = "Welcome " + login;
-            request.setAttribute("message", message);
-            dispatcher.forward(request,response);
+            if(user.getLogin().equals("Admin"))
+            {
+                Cookie loginCookie = new Cookie("user",login);
+                //setting cookie to expiry in 30 mins
+                loginCookie.setMaxAge(30*60);
+                response.addCookie(loginCookie);
+                response.sendRedirect("users.jsp");
+            }else {
+                Cookie loginCookie = new Cookie("user",login);
+                //setting cookie to expiry in 30 mins
+                loginCookie.setMaxAge(30*60);
+                response.addCookie(loginCookie);
+                response.sendRedirect("passwordManager.jsp");
+            }
         }else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
             message = "Wrong login or password";
