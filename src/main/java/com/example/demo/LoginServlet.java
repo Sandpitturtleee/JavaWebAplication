@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -25,7 +26,11 @@ public class LoginServlet extends HttpServlet {
                 //setting cookie to expiry in 30 mins
                 loginCookie.setMaxAge(30*60);
                 response.addCookie(loginCookie);
-                response.sendRedirect("users.jsp");
+                //response.sendRedirect("users.jsp");
+                ServletContext context= getServletContext();
+                RequestDispatcher rd= context.getRequestDispatcher("/DisplayUsersServlet");
+                rd.forward(request, response);
+
             }else {
                 Cookie loginCookie = new Cookie("user",login);
                 //setting cookie to expiry in 30 mins

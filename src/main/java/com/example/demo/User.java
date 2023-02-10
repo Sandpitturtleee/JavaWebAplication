@@ -73,6 +73,19 @@ public class User {
         }
         return result;
     }
+    public void deleteUser(String login){
+        try {
+            Connection connection = DBConnector.connect();
+            Statement statement = connection.createStatement();
+            PreparedStatement st = connection.prepareStatement("DELETE FROM Table WHERE login = ?");
+            st.setString(1,login);
+            st.executeUpdate();
+            statement.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+            System.exit(0);
+        }
+    }
 
     public String getLogin() {
         return login;
