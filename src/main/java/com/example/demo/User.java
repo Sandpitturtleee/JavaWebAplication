@@ -71,6 +71,17 @@ public class User {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
+        try {
+            Connection connection1 = DBConnector.connect();
+            Statement statement1 = connection1.createStatement();
+            statement1.executeUpdate("CREATE TABLE "+ login +"  (login TEXT, email TEXT, password TEXT)");
+            connection1.close();
+            statement1.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+            System.exit(0);
+        }
+
         return result;
     }
     public void deleteUser(String login){
