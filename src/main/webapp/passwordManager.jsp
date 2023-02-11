@@ -4,17 +4,7 @@
     <title>passwordManager</title>
 </head>
 <body>
-<%
-    String userName = null;
-    Cookie[] cookies = request.getCookies();
-    if(cookies !=null){
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("user")) userName = cookie.getValue();
-        }
-    }
-    if(userName == null) response.sendRedirect("login.jsp");
-%>
-<h3>Hi <%=userName %>, Login successful.</h3>
+<h3>Hi <%=session.getAttribute("login") %>, Login successful.</h3>
 
 <form action="LogoutServlet" method="post">
     <input type="submit" value="logout" >

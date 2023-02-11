@@ -75,9 +75,10 @@ public class User {
     }
     public void deleteUser(String login){
         try {
+            //login  = "Karol";
             Connection connection = DBConnector.connect();
             Statement statement = connection.createStatement();
-            PreparedStatement st = connection.prepareStatement("DELETE FROM Table WHERE login = ?");
+            PreparedStatement st = connection.prepareStatement("DELETE FROM users WHERE login = ?");
             st.setString(1,login);
             st.executeUpdate();
             statement.close();

@@ -15,20 +15,8 @@ public class LogoutServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie loginCookie = null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies != null){
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("user")){
-                    loginCookie = cookie;
-                    break;
-                }
-            }
-        }
-        if(loginCookie != null){
-            loginCookie.setMaxAge(0);
-            response.addCookie(loginCookie);
-        }
+        HttpSession session = request.getSession();
+        session.setAttribute("login", "");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
         message = "User logged out";
         request.setAttribute("message", message);

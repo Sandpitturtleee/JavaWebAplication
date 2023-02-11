@@ -16,26 +16,19 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession();
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);
         if(user.login()) {
+            session.setAttribute("login", user.getLogin());
             if(user.getLogin().equals("Admin"))
             {
-                Cookie loginCookie = new Cookie("user",login);
-                //setting cookie to expiry in 30 mins
-                loginCookie.setMaxAge(30*60);
-                response.addCookie(loginCookie);
-                //response.sendRedirect("users.jsp");
                 ServletContext context= getServletContext();
                 RequestDispatcher rd= context.getRequestDispatcher("/DisplayUsersServlet");
                 rd.forward(request, response);
 
             }else {
-                Cookie loginCookie = new Cookie("user",login);
-                //setting cookie to expiry in 30 mins
-                loginCookie.setMaxAge(30*60);
-                response.addCookie(loginCookie);
                 response.sendRedirect("passwordManager.jsp");
             }
         }else {
