@@ -8,6 +8,10 @@
 <body>
 
 <h3>Hi <%=session.getAttribute("login") %>, Login successful.</h3>
+<% if(request.getAttribute("message")!=null){
+%>
+<h3><%= request.getAttribute("message") %></h3>
+<%}%>
 <table>
     <thead>
     <tr>
@@ -28,7 +32,9 @@
         <td><%=login%></td>
         <td><%=email%></td>
         <td><%=password%></td>
-        <td><button onclick="<%if(session.getAttribute("login") != null) user.deleteUser(login);%>">Delete User</button>
+        <td><form action="${pageContext.request.contextPath}/DeleteUserServlet" method="post">
+            <button type="submit" name="button" value="button1">Delete User</button>
+        </form>
         </td>
     </tr>
     <%}
