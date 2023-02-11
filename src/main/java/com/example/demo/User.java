@@ -81,18 +81,26 @@ public class User {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
         }
-
         return result;
     }
     public void deleteUser(String login){
         try {
-            //login  = "Karol";
             Connection connection = DBConnector.connect();
             Statement statement = connection.createStatement();
             PreparedStatement st = connection.prepareStatement("DELETE FROM users WHERE login = ?");
             st.setString(1,login);
             st.executeUpdate();
             statement.close();
+        } catch ( Exception e ) {
+            System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+            System.exit(0);
+        }
+        try {
+            Connection connection1 = DBConnector.connect();
+            Statement statement1 = connection1.createStatement();
+            statement1.executeUpdate("DROP TABLE "+ login);
+            connection1.close();
+            statement1.close();
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
