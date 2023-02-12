@@ -24,5 +24,9 @@
   <br />
   <input type="submit" value="AddUserAccount" name="AddUserAccount"/>
 </form>
+<br />
+<form action="passwordManager.jsp">
+  <input type="submit" value="Cancel" name="Cancel"/>
+</form>
 </body>
 </html>

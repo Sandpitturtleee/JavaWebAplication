@@ -39,8 +39,8 @@
         <td><%=login%></td>
         <td><%=email%></td>
         <td><%=password%></td>
-        <td><form action="${pageContext.request.contextPath}/DeleteUserServlet" method="post">
-            <button type="submit" name="button" value="button1">Delete User</button>
+        <td><form action="${pageContext.request.contextPath}/DeleteUserAccountServlet" method="post">
+            <button type="submit" name="button" value="button1">Delete Account</button>
         </form>
         </td>
     </tr>
