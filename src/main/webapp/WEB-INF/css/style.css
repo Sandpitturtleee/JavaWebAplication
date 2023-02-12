@@ -1,0 +1,130 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    background-color: black;
+}
+.content {
+    position: fixed;
+    top: 70px;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    background-color: whitesmoke;
+    overflow: auto;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    background-color: black;
+}
+.header_text
+{
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+.footer_button
+{
+    text-align: center;
+    color: white;
+}
+
+.form-container
+{
+    border:thin solid #aaaaaa;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f7f7f7;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-80%, -80%);
+    transform: translate(-50%, -50%);
+}
+.button
+{
+    background-color: #0080FE;
+    font-size: 13px;
+    color: white;
+    border: 1px solid #0080FE;
+    border-radius: 10px;
+    padding: 15px 32px;
+    margin-right: 10px;
+}
+
+.button:hover
+{
+    background-color: #ddd;
+    color: #0080FE;
+    text-decoration: none;
+}
+.button-small
+{
+    background-color: #0080FE;
+    font-size: 10px;
+    color: white;
+    border: 1px solid #0080FE;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.button-small:hover
+{
+    background-color: #ddd;
+    color: #0080FE;
+    text-decoration: none;
+}
+.MainPageButton
+{
+    background-color: #0080FE;
+    color: white;
+    border: 1px solid #0080FE;
+    border-radius: 10px;
+    width: 12em;  height: 3em;
+    margin: 20px;
+}
+.MainPageButton:hover
+{
+    width: 12em;  height: 3em;
+    margin: 20px;
+    background-color: #ddd;
+    color: #0080FE;
+    text-decoration: none;
+}
+.table-container
+{
+    width: 100%;
+    margin: 0 auto;
+    align-items:center;
+    justify-content:center;
+}
+
+.table, td
+{
+    margin: 10px;
+    text-align: center;
+}
+
+
+.table-container tbody tr:nth-child(odd)
+{
+    background-color: white;
+}
+
+.table-container tbody tr:nth-child(even)
+{
+    background-color: #eee;
+}
+.text_center
+{
+    text-align: center;
+}
