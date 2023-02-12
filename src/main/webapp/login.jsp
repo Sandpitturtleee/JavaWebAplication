@@ -18,5 +18,8 @@
             <br />
             <input type="submit" value="Login" name="Login"/>
         </form>
+        <form action="register.jsp">
+            <input type="submit" value="Register" name="Register"/>
+        </form>
     </body>
 </html>

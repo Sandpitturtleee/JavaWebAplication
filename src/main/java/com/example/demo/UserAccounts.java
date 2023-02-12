@@ -23,14 +23,14 @@ public class UserAccounts {
         try {
             Connection connection = DBConnector.connect();
             Statement statement = connection.createStatement();
-            String sql = "SELECT Count(*) FROM "+ login +"  WHERE login = '" + login +"';";
+            String sql = "SELECT Count(*) FROM "+ userLogin +"  WHERE login = '" + login +"';";
             ResultSet resultSet  = statement.executeQuery(sql);
             resultSet.next();
             connection.setAutoCommit(true);
             if(resultSet.getInt(1)==0)
             {
                 Statement statementInsert= connection.createStatement();
-                String sqlInsert = "INSERT INTO "+ login +"  (type, url, login, email, password) VALUES ('"+ type +"', '"+url+"', '"+login+"', '"+email+"','"+password+"');";
+                String sqlInsert = "INSERT INTO "+ userLogin +"  (type, url, login, email, password) VALUES ('"+ type +"', '"+url+"', '"+login+"', '"+email+"','"+password+"');";
                 statementInsert.executeUpdate(sqlInsert);
                 resultSet.close();
                 statementInsert.close();

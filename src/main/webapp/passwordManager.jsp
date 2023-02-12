@@ -34,6 +34,8 @@
             String password = userAccount.getPassword();
     %>
     <tr>
+        <td><%=type%></td>
+        <td><%=url%></td>
         <td><%=login%></td>
         <td><%=email%></td>
         <td><%=password%></td>
@@ -46,7 +48,9 @@
     %>
     </tbody>
 </table>
-
+<form action="addUserAccount.jsp" method="post">
+    <input type="submit" value="AddAccount" >
+</form>
 <form action="LogoutServlet" method="post">
     <input type="submit" value="logout" >
 </form>
