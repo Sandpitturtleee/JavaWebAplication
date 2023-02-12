@@ -14,14 +14,20 @@ public class LoginServlet extends HttpServlet {
 
     String message = "";
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
         HttpSession session = request.getSession();
+        if (!isEmpty(request.getParameter("login")))
+        {
+            String login = request.getParameter("login");
+            String password = request.getParameter("password");
+            session.setAttribute("login", login);
+            session.setAttribute("password", password);
+        }
+        String sessionLogin = (String) session.getAttribute("login");
+        String sessionPassword = (String) session.getAttribute("password");
         User user = new User();
-        user.setLogin(login);
-        user.setPassword(password);
+        user.setLogin(sessionLogin);
+        user.setPassword(sessionPassword);
         if(user.login()) {
-            session.setAttribute("login", user.getLogin());
             if(user.getLogin().equals("Admin"))
             {
                 ServletContext context= getServletContext();
@@ -49,6 +55,9 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void destroy() {
+    }
+    public static boolean isEmpty(String string) {
+        return (string == null || string.isEmpty());
     }
 }
 

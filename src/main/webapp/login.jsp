@@ -21,5 +21,8 @@
         <form action="register.jsp">
             <input type="submit" value="Register" name="Register"/>
         </form>
+    <form action="index.jsp">
+        <input type="submit" value="MainPage" name="Main Page"/>
+    </form>
     </body>
 </html>

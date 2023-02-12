@@ -6,16 +6,27 @@
     <title>JSP Page</title>
 </head>
 <body>
-    <%
-    session.setAttribute("accessLvl", "Guest");
-    %>
-    <form method="post" action="login.jsp">
-        <br />
-        <input type="submit" value="Login">
-    </form>
-    <form method="post" action="register.jsp">
-        <br />
-        <input type="submit" value="Register">
-    </form>
+<% if(session.getAttribute("login")==null || session.getAttribute("login").equals("")){ %>
+<form action="loginRegiser.jsp">
+    <h3>Please log in or register</h3>
+    <input type="submit" value="Login Register" name="OK"/>
+</form>
+
+<%} else {%>
+<h3>Hi <%=session.getAttribute("login") %></h3>
+<% if(session.getAttribute("login").equals("Admin")){ %>
+<form action="LoginServlet">
+    <h3>Go to users panel</h3>
+    <input type="submit" value="UsersPanel" name="OK"/>
+</form>
+
+<%} else {%>
+<form action="LoginServlet">
+    <h3>Go to your accounts</h3>
+    <input type="submit" value="UsersPanel" name="OK"/>
+</form>
+<%};%>
+<%};%>
+
 </body>
 </html>

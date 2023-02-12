@@ -41,9 +41,11 @@
     %>
     </tbody>
 </table>
-
 <form action="LogoutServlet" method="post">
     <input type="submit" value="logout" >
+</form>
+<form action="index.jsp">
+    <input type="submit" value="MainPage" name="Main Page"/>
 </form>
 </body>
 </html>

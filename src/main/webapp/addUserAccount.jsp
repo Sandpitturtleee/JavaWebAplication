@@ -28,5 +28,8 @@
 <form action="passwordManager.jsp">
   <input type="submit" value="Cancel" name="Cancel"/>
 </form>
+<form action="index.jsp">
+  <input type="submit" value="MainPage" name="Main Page"/>
+</form>
 </body>
 </html>

@@ -15,7 +15,9 @@ public class DisplayUserAccountsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         GetUserAccounts userAccounts = new GetUserAccounts();
-        String userLogin = request.getParameter("login");
+        //String userLogin = request.getParameter("login");
+        HttpSession session = request.getSession();
+        String userLogin = (String) session.getAttribute("login");
         List<UserAccounts> list = userAccounts.getAllUserAccounts(userLogin);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/passwordManager.jsp");
         request.setAttribute("list", list);

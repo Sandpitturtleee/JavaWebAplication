@@ -53,7 +53,7 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         if(user.register()) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            message = "User registered" + login + email + password;
+            message = "User registered";
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }else {
