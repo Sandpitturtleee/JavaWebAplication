@@ -74,7 +74,7 @@ public class User {
         try {
             Connection connection1 = DBConnector.connect();
             Statement statement1 = connection1.createStatement();
-            statement1.executeUpdate("CREATE TABLE "+ login +"  (login TEXT, email TEXT, password TEXT)");
+            statement1.executeUpdate("CREATE TABLE "+ login +"  (type TEXT, url TEXT, login TEXT, email TEXT, password TEXT)");
             connection1.close();
             statement1.close();
         } catch ( Exception e ) {

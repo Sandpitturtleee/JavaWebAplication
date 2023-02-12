@@ -29,7 +29,9 @@ public class LoginServlet extends HttpServlet {
                 rd.forward(request, response);
 
             }else {
-                response.sendRedirect("passwordManager.jsp");
+                ServletContext context= getServletContext();
+                RequestDispatcher rd= context.getRequestDispatcher("/DisplayUserAccountsServlet");
+                rd.forward(request, response);
             }
         }else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
