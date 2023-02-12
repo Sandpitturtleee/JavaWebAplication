@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h3>Hi <%=session.getAttribute("login") %>, Login successful.</h3>
+<h3>Hi <%=session.getAttribute("login") %></h3>
 <% if(request.getAttribute("message")!=null){
 %>
 <h3><%= request.getAttribute("message") %></h3>

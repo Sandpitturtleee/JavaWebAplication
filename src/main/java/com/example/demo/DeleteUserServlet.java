@@ -18,7 +18,7 @@ public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
         user.deleteUser("Karol");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         message = "User deleted";
         request.setAttribute("message", message);
         dispatcher.forward(request,response);

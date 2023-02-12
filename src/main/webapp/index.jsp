@@ -14,6 +14,10 @@
 
 <%} else {%>
 <h3>Hi <%=session.getAttribute("login") %></h3>
+<% if(request.getAttribute("message")!=null){
+%>
+<h3><%= request.getAttribute("message") %></h3>
+<%}%>
 <% if(session.getAttribute("login").equals("Admin")){ %>
 <form action="LoginServlet">
     <h3>Go to users panel</h3>

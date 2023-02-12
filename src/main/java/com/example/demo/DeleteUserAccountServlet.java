@@ -20,7 +20,7 @@ public class DeleteUserAccountServlet extends HttpServlet {
         String userLogin =(String)session.getAttribute("login");
         UserAccounts userAccount = new UserAccounts();
         userAccount.deleteAccount(userLogin,"Login");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         message = "Account deleted";
         request.setAttribute("message", message);
         dispatcher.forward(request,response);

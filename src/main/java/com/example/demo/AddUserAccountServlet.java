@@ -25,12 +25,12 @@ public class AddUserAccountServlet extends HttpServlet {
         userAccount.setEmail(email);
         userAccount.setPassword(password);
         if(userAccount.addAccount(userLogin)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            message = "New account added" + login + email + password;
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/DisplayUserAccountsServlet");
+            message = "New account added";
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
         }else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/DisplayUserAccountsServlet");
             message = "Error";
             request.setAttribute("message", message);
             dispatcher.forward(request,response);
