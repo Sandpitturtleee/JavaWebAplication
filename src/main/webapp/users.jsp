@@ -42,9 +42,13 @@
                     <td><%=login%></td>
                     <td><%=email%></td>
                     <td><%=password%></td>
-                    <td><form action="${pageContext.request.contextPath}/DeleteUserServlet" method="post">
-                        <input type="hidden" name="loginPar" value="<%=login%>">
-                        <button class="button-small" type="submit" name="button" value="button1">Delete</button>
+                    <td>
+                        <% if(!login.equals("Admin")){
+                        %>
+                        <form action="${pageContext.request.contextPath}/DeleteUserServlet" method="post">
+                            <input type="hidden" name="loginPar" value="<%=login%>">
+                            <button class="button-small" type="submit" name="button" value="button1">Delete</button>
+                        <%}%>
                     </form>
                     </td>
                 </tr>
